@@ -1,4 +1,31 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<h1> Привет, {{ name }}</h1>
+<h1> Привет {{ controller_name }} !!</h1>
+    <div>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">title</th>
+            <th scope="col">description</th>
+            <th scope="col">status</th>
+            <th scope="col">action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for note in notes %}
+        <tr>
+            <th scope="row">{{ note.id }}</th>
+            <td>{{ note.title }}</td>
+            <td>{{ note.description }}</td>
+            <td>{{ note.status }}</td>
+            <td><a href="{{ path('remove_note', {'note': note.id}) }}" class="btn btn-warning">Delete</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock  %}
