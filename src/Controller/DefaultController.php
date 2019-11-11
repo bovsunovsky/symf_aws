@@ -26,12 +26,12 @@ class DefaultController extends AbstractController
         $note = new Notes();
         // создаём форму и передаём туда сущность
         $form = $this->createForm(NotesType::class, $note);
-        $form->handleRequest($request);
+        $form->handleRequest($request); // сабмитит форму
 
         // если форма засабмичена и данные валидны
         if ($form->isSubmitted() && $form->isValid()){
             // вытягиваем данные из формы
-            $data = $form->getData();
+            $data = $form->getData(); // условно для проверки
             // готовим данные для записи в базу
             $em->persist($note);
             //записываем в базу
