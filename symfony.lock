@@ -170,7 +170,7 @@
         ]
     },
     "symfony/form": {
-        "version": "v4.3.6"
+        "version": "v4.3.7"
     },
     "symfony/framework-bundle": {
         "version": "4.2",
@@ -198,10 +198,10 @@
         "version": "v4.3.5"
     },
     "symfony/inflector": {
-        "version": "v4.3.6"
+        "version": "v4.3.7"
     },
     "symfony/intl": {
-        "version": "v4.3.6"
+        "version": "v4.3.7"
     },
     "symfony/maker-bundle": {
         "version": "1.0",
@@ -216,7 +216,7 @@
         "version": "v4.3.5"
     },
     "symfony/options-resolver": {
-        "version": "v4.3.6"
+        "version": "v4.3.7"
     },
     "symfony/orm-pack": {
         "version": "v1.0.7"
@@ -243,7 +243,7 @@
         "version": "v1.0.4"
     },
     "symfony/property-access": {
-        "version": "v4.3.6"
+        "version": "v4.3.7"
     },
     "symfony/routing": {
         "version": "4.2",
