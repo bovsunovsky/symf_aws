@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191107143332 extends AbstractMigration
+final class Version20191112173436 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,6 +22,19 @@ final class Version20191107143332 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, 
+                                                author VARCHAR(255) NOT NULL, 
+                                                title VARCHAR(255) NOT NULL, 
+                                                content LONGTEXT NOT NULL, 
+                                                created_at DATETIME NOT NULL, 
+                                                updated_at DATETIME DEFAULT NULL, 
+                                                PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE comment (id INT AUTO_INCREMENT NOT NULL, 
+                                                author VARCHAR(255) NOT NULL, 
+                                                content VARCHAR(255) NOT NULL, 
+                                                created_at DATETIME NOT NULL, 
+                                                updated_at DATETIME NOT NULL, 
+                                                PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE notes (id INT AUTO_INCREMENT NOT NULL, 
                                                 title VARCHAR(255) NOT NULL, 
                                                 description VARCHAR(1200) DEFAULT NULL, 
@@ -35,6 +48,8 @@ final class Version20191107143332 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('DROP TABLE article');
+        $this->addSql('DROP TABLE comment');
         $this->addSql('DROP TABLE notes');
     }
 }
