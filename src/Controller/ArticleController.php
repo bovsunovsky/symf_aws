@@ -74,4 +74,49 @@ class ArticleController extends AbstractController
         ]);
 
     }
+
+    /**
+     * @param Request $request
+     * @param Article $article
+     * @Route("/article/update/{article}", name="update_article")
+     */
+    public function update(Request $request, Article $article)
+    {
+        $form = $this->createForm(ArticleType::class, $article,[
+            'action' => $this->generateUrl('update_article',[
+                'article'=> $article->getId()
+            ]),
+            'method'=>'POST',
+        ]);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $article = $form->getData();
+            $article->setUpdatedAt(new \DateTime('now'));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute("article");
+        }
+
+        return $this->render('article/form.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @param Article $article
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/article/delete/{article}", name="article_delete")
+     */
+    public function delete(Article $article)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article);
+        $em->flush();
+
+        return $this->redirectToRoute("article");
+    }
 }
