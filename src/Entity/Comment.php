@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * @ORM\Entity
@@ -35,6 +37,13 @@ class Comment
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="comments")
+     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     */
+    // связь с сущностью Article
+    private $article;
 
     public function getId(): ?int
     {
@@ -87,5 +96,24 @@ class Comment
         $this->updated_at = $updated_at;
 
         return $this;
+    }
+
+    /**
+     * @param $article
+     * @return Comment
+     */
+    public function setArticle($article)
+    {
+        $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticle()
+    {
+        return $this->article;
     }
 }

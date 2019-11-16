@@ -82,6 +82,8 @@ class ArticleController extends AbstractController
      */
     public function update(Request $request, Article $article)
     {
+        //создаём форму ArticleType, передаём в неё обьект $article, и массив доп. настроек,
+        // так как изначально форма работает на create то для работы как update требуется передать action и Id
         $form = $this->createForm(ArticleType::class, $article,[
             'action' => $this->generateUrl('update_article',[
                 'article'=> $article->getId()
