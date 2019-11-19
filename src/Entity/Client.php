@@ -55,12 +55,11 @@ class Client
 
     /**
      * @Assert\NotBlank
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="smallint", nullable=true)
      */
     private $sex;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="datetime")
      */
     private $created_at;
