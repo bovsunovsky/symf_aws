@@ -60,4 +60,61 @@ class ClientController extends AbstractController
             'form'=>$form->createView(),
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @param Client $client
+     * @Route("/client/update/{client}" , name="update_client")
+     */
+    public function update(Request $request, Client $client)
+    {
+        //создаём форму ***Type, передаём в неё обьект $***, и массив доп. настроек,
+        // так как изначально форма работает на create то для работы как update требуется передать action и Id
+        $form = $this->createForm(ClientType::class, $client ,[
+            'action'=>$this->generateUrl("update_client",[
+                'client'=> $client->getId()
+            ]),
+            'method'=>'POST'
+        ]);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute("client");
+        }
+
+        return $this->render('client/form.html.twig',[
+            'form'=>$form->createView()
+        ]);
+    }
+
+    /**
+     * @param Client $client
+     * @Route("/client/delete/{client}", name="delete_client")
+     */
+    public function delete(Client $client)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($client);
+        $em->flush();
+
+        return $this->redirectToRoute("client");
+    }
+
+    /**
+     * @param Client $client
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/client/profile/{client}", name="client_profile")
+     */
+    public function profile(Client $client)
+    {
+        return $this->render('client/profile.html.twig',[
+            'client' => $client
+        ]);
+
+    }
 }

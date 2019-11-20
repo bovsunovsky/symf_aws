@@ -8,16 +8,15 @@
             <a class="nav-link active" href="{{ path('article') }}">Блог</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ path("client") }}">Клиенты</a>
+            <a class="nav-link" href="#">XXX</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Трейтяя</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ path("client") }}" role="button" aria-haspopup="true" aria-expanded="false">Клиенты</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="{{ path("client") }}">Все клиенты</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="{{ path("create_client") }}">Добавить клиента</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
             </div>
         </li>
         <li class="nav-item">
